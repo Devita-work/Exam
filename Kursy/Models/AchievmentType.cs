@@ -4,10 +4,10 @@ using System.Linq;
 using System.Web;
 
 namespace Kursy.Models
-
 {
-    public class Human 
+    public enum AchievmentType : int
     {
-        public List<Achievment> Achievments = new List<Achievment>();
+        Childe = 1,
+        Teacher = 2
     }
 }

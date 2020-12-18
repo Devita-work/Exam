@@ -7,8 +7,6 @@ namespace Kursy.Models
 {
     public class Date
     {
-        public int SumTeacher;
-        public int SumChild;
         public List<int> ArrChild = new List<int>();
         public List<int> ArrTeacher = new List<int>();
         public void DateAchievments(int date, List<int> arr1, List<int> arr2)

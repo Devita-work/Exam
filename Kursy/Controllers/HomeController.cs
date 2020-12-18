@@ -10,32 +10,52 @@ namespace Kursy.Models
     {
         public ActionResult Index()
         {
-            Models.Teacher teacher = new Models.Teacher(Models.Human.Teacher);
-            Models.Child child = new Models.Child(Models.Human.Child);
 
+            Models.Teacher teacher = new Models.Teacher();
+            Models.Child child = new Models.Child();
+
+            Models.GiveAchievement giveAchievement = new GiveAchievement();
+            Models.Achievment achievment = new Achievment();
+            Models.Achievment achievment1 = new Achievment();
+
+            Models.Achievment[] achievments = new Models.Achievment[2] { achievment, achievment1 };
             Random rand = new Random();
 
-            int achievCount = 1;
-            int date = 2;
+            achievment.WhoseAchievment = Models.AchievmentType.Teacher;
 
-            while (achievCount < date)
+            for(int i = 0; i < 10; i++)
             {
-                achievCount = rand.Next(1, 17); //Сколько всего ачивок
+                int index = rand.Next(0, 2);
+                giveAchievement.GiveAchievment(achievments[index], teacher);
+                giveAchievement.GiveAchievment(achievments[index], child);
 
-                date = rand.Next(1, achievCount); //До какой даты
             }
-            Models.GiveAchievement giveAchievement = new Models.GiveAchievement();
-            giveAchievement.GiveAchievments(achievCount, teacher.teacherAchievments, child.childAchievments, teacher.teacher, child.child);
-            Models.Date dateAchievement = new Models.Date();
-            dateAchievement.DateAchievments(date, teacher.teacherAchievments, child.childAchievments);
 
-            ViewBag.SumChild = dateAchievement.ArrChild.Count;
-            ViewBag.SumTeacher = dateAchievement.ArrTeacher.Count;
-            ViewBag.AchieveDate = date;
-            ViewBag.AchieveCount = achievCount;
+            //Models.Teacher teacher = new Models.Teacher(Models.Human.Teacher);
+            //Models.Child child = new Models.Child(Models.Human.Child);
+
+            //Random rand = new Random();
+
+            //int achievCount = 1;
+            //int date = 2;
+
+            //while (achievCount < date)
+            //{
+            //    achievCount = rand.Next(1, 17); //Сколько всего ачивок
+
+            //    date = rand.Next(1, achievCount); //До какой даты
+            //}
+            //Models.GiveAchievement giveAchievement = new Models.GiveAchievement();
+            //giveAchievement.GiveAchievments(achievCount, teacher.teacherAchievments, child.childAchievments, teacher.teacher, child.child);
+            //Models.Date dateAchievement = new Models.Date();
+            //dateAchievement.DateAchievments(date, teacher.teacherAchievments, child.childAchievments);
+
+            //ViewBag.SumChild = dateAchievement.ArrChild.Count;
+            //ViewBag.SumTeacher = dateAchievement.ArrTeacher.Count;
+            //ViewBag.AchieveDate = date;
             ViewBag.TeacherStat = teacher.Status;
-            ViewBag.TeacherAchieve = teacher.teacherAchievments.Count;
-            ViewBag.ChildAchieve = child.childAchievments.Count;
+            ViewBag.TeacherAchieve = teacher.Achievments.Count;
+            ViewBag.ChildAchieve = child.Achievments.Count;
 
             return View();
         }

@@ -5,24 +5,17 @@ using System.Web;
 
 namespace Kursy.Models
 {
-    public class GiveAchievement
+    public class GiveAchievement : Achievment
     {
-        public void GiveAchievments(int achievCount, List<int> arr1, List<int> arr2, Human teacher, Human child)
-        {
-            Random rand = new Random();
-            for (int i = 0; i < achievCount; i++)
+        public void GiveAchievment(Achievment achievment, Human human) 
+        { 
+            if (achievment.WhoseAchievment == AchievmentType.Childe && human is Child child)
             {
-                int achieve = rand.Next(1, 3);
-
-                if (achieve == (int)teacher)
-                {
-                    arr1.Add(1);
-                }
-
-                if (achieve == (int)child)
-                {
-                    arr2.Add(2);
-                }
+                child.Achievments.Add(achievment);
+            }
+            if (achievment.WhoseAchievment == AchievmentType.Teacher && human is Teacher teacher)
+            {
+                teacher.Achievments.Add(achievment);
             }
         }
     }

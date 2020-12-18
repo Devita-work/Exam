@@ -5,14 +5,8 @@ using System.Web;
 
 namespace Kursy.Models
 {
-    public class Child
+    public class Child : Human
     {
-        public Human child;
-        public List<int> childAchievments = new List<int>();
 
-        public Child(Human human)
-        {
-            child = human;
-        }
     }
 }

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Web;
 
 namespace Kursy.Models
-
 {
-    public class Human 
+    public class Achievment
     {
-        public List<Achievment> Achievments = new List<Achievment>();
+        public string Name;
+        public AchievmentType WhoseAchievment;
     }
 }
